@@ -5,61 +5,30 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../main.dart';
 
-class SplashScreen extends HookWidget {
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    goToNewPage();
+  }
+
+  goToNewPage() {
+    Future.delayed(const Duration(seconds: 3)).then((value) => Navigator.push(
+        context, MaterialPageRoute(builder: (_) => const MainPage())));
+  }
+
   @override
   Widget build(BuildContext context) {
-    AnimationController animationController = useAnimationController(duration: const Duration(seconds: 4), initialValue: 1);
-    animationController.repeat(reverse: false);
-
-    AnimationController controller = useAnimationController(duration: const Duration(seconds: 3), initialValue: 1);
-    controller.repeat(reverse: false, period: const Duration(seconds: 4));
-
-    controller = useAnimationController(duration: const Duration(seconds: 3), initialValue: 1);
-    controller.repeat(reverse: false, period: const Duration(seconds: 4));
-
-    Animation< Offset > offset = Tween< Offset >(begin: const Offset(0.0, 1.0), end:     Offset.zero).animate(controller);
-    controller.forward();
-
-    useEffect(() {
-      Timer.periodic(const Duration(seconds: 4), (time) {
-        Route route = MaterialPageRoute(builder: (context) => const MainPage());
-        Navigator.of(context).pushReplacement(route);
-      });
-      return (){};
-    });
-
-    return SafeArea(
-        child: Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFFFFFFF), Color(0xffE3F3FF)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Stack(
-          children: [
-            FadeTransition(
-                  opacity: animationController,
-                  child: const Center(
-                    child: FlutterLogo(
-                      size: 100,
-                    )),
-             ),
-            // Align(
-                // alignment: Alignment.bottomCenter,
-                // child: SlideTransition(
-                //   position: offset,
-                //   child: Image.asset(
-                //     'assets/images/splash_bg.png',
-                //     width: MediaQuery.of(context).size.width,
-                //     fit: BoxFit.fill,
-                //   ),
-                // ))
-          ],
-        ),
-      ),
-    ));
+    return const Scaffold(
+      body: Center(child: FlutterLogo(size: 70)),
+    );
   }
 }
