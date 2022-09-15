@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rivers_demo/pages/login.dart';
 
 import 'pages/api_demo.dart';
+import 'pages/image_rotate_effect_demo.dart';
 import 'pages/rotate_image_demo.dart';
 import 'pages/scroll_demo.dart';
 import 'pages/splash.dart';
@@ -41,6 +42,7 @@ class MainPage extends StatelessWidget {
           myListTile(context, "Api demo with hooks", const ApiDemoWithHooks()),
           myListTile(context, "Scroll demo with hooks", const ScrollDemo()),
           myListTile(context, "Animation demo with hooks", const ImageRotateDemo()),
+          myListTile(context, "Animation rotate demo with hooks", const ImageRotateEffectDemo()),
         ],
       ),
     );
